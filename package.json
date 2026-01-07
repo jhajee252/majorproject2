@@ -1,17 +1,15 @@
+
 {
-  "engines":{
-    "node": "20.19.6"
-  },
   "name": "majorproject2",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "engines": {
+    "node": "20.x"
+  },
   "dependencies": {
     "cloudinary": "^2.8.0",
     "connect-flash": "^0.1.1",
@@ -33,3 +31,4 @@
     "passport-local-mongoose": "^9.0.1"
   }
 }
+
