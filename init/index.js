@@ -1,63 +1,89 @@
+// // const mongoose = require("mongoose");
+// // const initData = require("./data.js");
+// // const Listing = require("../models/listing.js");
+
+// // const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+
+
+
+
+
+// // main()
+// // .then(() => {
+// //  console.log("connect to DB")
+// // })
+// // .catch((err) => {
+// //     console.log(err)
+// // })
+// // async function main() {
+// //     await mongoose.connect(MONGO_URL);
+    
+// // }
+
+// // const initDB = async () => {
+// //     await Listing.deleteMany({});
+// //    initData.data.map((obj) => ({ obj, 
+// //     owner: "693ee665b669bdd005f16a5a" 
+// // }));
+// // await Listing.insertMany(updatedData);
+
+// //     // await Listing.insertMany(initData.data);
+// //      await Listing.insertMany(listingsWithOwner);
+// //     console.log("data was initialized");
+// // };
+
+// // initDB();
+
+
 // const mongoose = require("mongoose");
 // const initData = require("./data.js");
 // const Listing = require("../models/listing.js");
 
 // const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 
-
-
-
-
-// main()
-// .then(() => {
-//  console.log("connect to DB")
-// })
-// .catch((err) => {
-//     console.log(err)
-// })
 // async function main() {
-//     await mongoose.connect(MONGO_URL);
-    
+//   await mongoose.connect(MONGO_URL);
+//   console.log("connect to DB");
 // }
 
-// const initDB = async () => {
-//     await Listing.deleteMany({});
-//    initData.data.map((obj) => ({ obj, 
-//     owner: "693ee665b669bdd005f16a5a" 
-// }));
-// await Listing.insertMany(updatedData);
+// main().catch(err => console.log(err));
 
-//     // await Listing.insertMany(initData.data);
-//      await Listing.insertMany(listingsWithOwner);
-//     console.log("data was initialized");
+// const initDB = async () => {
+//   await Listing.deleteMany({});
+
+//   const listingsWithOwner = initData.data.map((listing) => ({
+//     ...listing,
+//     owner: new mongoose.Types.ObjectId("693ee665b669bdd005f16a5a"),
+//   }));
+
+//   await Listing.insertMany(listingsWithOwner);
+//   console.log("data was initialized");
 // };
 
 // initDB();
 
 
+require("dotenv").config();
 const mongoose = require("mongoose");
-const initData = require("./data.js");
-const Listing = require("../models/listing.js");
+const initData = require("./data");
+const Listing = require("../models/listing");
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+const dbUrl = process.env.ATLASDB_URL || "mongodb://127.0.0.1:27017/wanderlust";
 
-async function main() {
-  await mongoose.connect(MONGO_URL);
-  console.log("connect to DB");
+async function seedDB() {
+  try {
+    await mongoose.connect(dbUrl);
+    console.log("✅ DB connected for seeding");
+
+    await Listing.deleteMany({});
+    await Listing.insertMany(initData.data);
+
+    console.log("✅ Database seeded successfully");
+  } catch (err) {
+    console.log("❌ Seeding error:", err);
+  } finally {
+    mongoose.connection.close();
+  }
 }
 
-main().catch(err => console.log(err));
-
-const initDB = async () => {
-  await Listing.deleteMany({});
-
-  const listingsWithOwner = initData.data.map((listing) => ({
-    ...listing,
-    owner: new mongoose.Types.ObjectId("693ee665b669bdd005f16a5a"),
-  }));
-
-  await Listing.insertMany(listingsWithOwner);
-  console.log("data was initialized");
-};
-
-initDB();
+seedDB();
