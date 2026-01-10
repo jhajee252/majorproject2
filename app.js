@@ -183,6 +183,15 @@ app.use((req, res, next) => {
   next();
 });
 
+// app.get("/", (req, res) => {
+//   res.redirect("/listings");
+// });
+
+app.get("/", (req, res) => {
+  res.send("RENDER ROOT WORKING");
+});
+
+
 // ================= ROUTES =================
 app.use("/listings", listingsRouter);
 app.use("/listings/:id/reviews", reviewsRouter);
