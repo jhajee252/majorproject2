@@ -37,29 +37,42 @@
 
 /* ===== Mobile Responsive ===== */
 @media (max-width: 768px) {
-    .navbar-center {
-        position: relative;      /* absolute se relative */
-        left: 0;
-        transform: none;
-        width: 90%;              /* responsive width */
-        max-width: 350px;
-        margin: 0 auto;          /* center horizontally */
-        display: flex;
-        flex-direction: column;  /* vertical stack */
+    /* Navbar main container */
+    .navbar {
+        flex-direction: column; /* sab elements vertical stack */
         align-items: center;
     }
 
-    .search-inp {
-        width: 100%;             /* fill parent */
-        margin-bottom: 0.5rem;   /* spacing between input & button */
+    /* Navbar links - Sign up / Log in / Airbnb your home */
+    .navbar-links {
+        display: flex;
+        flex-direction: column; /* 3 lines me stack */
+        align-items: center;
+        gap: 0.3rem; /* thoda space between lines */
+        margin-bottom: 0.5rem;
+    }
+
+    /* Center search form */
+    .navbar-center {
+        position: relative;
+        left: 0;
+        transform: none;
+        width: 90%;
+        max-width: 350px;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Search input and button */
+    .search-inp, .search-btn {
+        width: 100%;
+        margin: 0.2rem 0;
     }
 
     .search-btn {
-        width: 100%;             /* full width */
-        justify-content: center; /* icon + text centered */
-        margin: 0;
+        justify-content: center;
     }
 }
+
 </style>
 
 <nav class="navbar navbar-expand-md bg-light border-bottom sticky-top">
