@@ -1,17 +1,14 @@
 <% layout("/layouts/boilerplate") %>
     <div class="row mt-3">
-        <div class="col-12 text-center">
-
+        <div class="col-8 offset-3">
 
 
             <h3>
                 <%= listing.title %>
             </h3>
         </div>
-     <div class="col-12 col-md-8 col-lg-6 mx-auto">
-  <div class="card show-card listing-card">
-
-           <img src="<%= listing.image.url %>" class="card-img-top img-fluid show-img"alt="listing_image">
+        <div class="card col-6 offset-3 show-card listing-card">
+            <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="listing_image">
             <div class="card-body">
                 <p class="card-text">Owned by: <i>
                         <%= listing.owner.username %>
@@ -39,26 +36,16 @@
     <% if(currUser && listing.owner._id.equals(currUser._id)) { %>
 
 
-        <!-- <div class="btns">
+        <div class="btns">
             <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark col-1 offset-3 btn-edit">Edit</a>
 
             <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
                 <button class="btn btn-dark  offset-5">Delete</button>
             </form>
-        </div> -->
-    <div class="d-flex gap-2 justify-content-center my-3">
-  <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark">Edit</a>
-
-  <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
-    <button class="btn btn-dark">Delete</button>
-  </form>
-</div>
-
-
+        </div>
         <% } %>
             <% if(currUser) { %>
-               <div class="col-12 col-md-8 mx-auto">
-
+                <div class="col-8 offset-3">
                     <hr />
                     <h4>Leave a Review</h4>
                     <form action="/listings/<%= listing._id %>/reviews" method="POST" novalidate
@@ -104,9 +91,7 @@
                         <hr />
                         <div class="row">
                             <% for(review of listing.reviews){ %>
-                               <div class="col-12 col-md-6 mb-3">
-                                 <div class="card h-100">
- 
+                                <div class="card col-5 ms-3 mb-3">
                                     <h5 class="card-title">
                                         <%= review.author.username %>
                                     </h5>
