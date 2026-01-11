@@ -1,4 +1,4 @@
-<style>
+<!-- <style>
 /* ===== Desktop Styles ===== */
 .search-btn {
     background-color: #fe424d;
@@ -105,5 +105,109 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
       <span class="navbar-toggler-icon"></span>
     </button>
+  </div>
+</nav> -->
+
+
+<style>
+/* ===== Desktop ===== */
+.search-btn {
+  background-color: #fe424d;
+  color: #fff;
+  border-radius: 25px;
+  padding: 0.5rem 1.5rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.search-btn:hover {
+  background-color: #fe424d;
+  color: #fff;
+}
+
+.search-btn i {
+  margin-right: 0.45rem;
+}
+
+.search-inp {
+  border-radius: 25px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Center search */
+.navbar-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 768px) {
+  .navbar-center {
+    position: static;
+    transform: none;
+    width: 100%;
+    margin: 0.6rem 0;
+  }
+
+  .navbar-links {
+    text-align: center;
+  }
+
+  .navbar-links .nav-link {
+    padding: 0.4rem 0;
+  }
+
+  .search-btn {
+    width: 100%;
+    justify-content: center;
+    margin-top: 0.4rem;
+  }
+}
+</style>
+
+<nav class="navbar navbar-expand-md bg-light border-bottom sticky-top">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" href="/listings">
+      <i class="fa-regular fa-compass"></i>
+    </a>
+
+    <button class="navbar-toggler" type="button"
+      data-bs-toggle="collapse" data-bs-target="#navbarMain">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarMain">
+
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listings">Explore</a>
+      </div>
+
+      <form class="d-flex navbar-center my-2 my-md-0" role="search">
+        <input class="form-control me-md-2 search-inp"
+          type="search" placeholder="Search destinations">
+        <button class="btn search-btn" type="submit">
+          <i class="fa-solid fa-magnifying-glass"></i>Search
+        </button>
+      </form>
+
+      <div class="navbar-nav ms-md-auto navbar-links">
+        <a class="nav-link" href="/listings/new">Airbnb your home</a>
+
+        <% if(!currUser) { %>
+          <a class="nav-link" href="/users/signup"><b>Sign up</b></a>
+          <a class="nav-link" href="/users/login"><b>Log in</b></a>
+        <% } else { %>
+          <a class="nav-link" href="/users/logout"><b>Log out</b></a>
+        <% } %>
+      </div>
+
+    </div>
   </div>
 </nav>
